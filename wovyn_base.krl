@@ -17,7 +17,7 @@ ruleset wovyn_base {
 			]
 		}
 
-		temperature_threshold = 70
+		temperature_threshold = 80
 		to_notify_number = "19134019979"
 		twilio_number = "12017482171"
 
@@ -45,10 +45,10 @@ ruleset wovyn_base {
 		
 		pre {
 			temperature = event:attr("temperature")
-			temp_attributes = event:attrs.klog("Attributes").head()
+			temperatureF = temperature["temperatureF"].klog("temperatureF").head()
 		}
 
-		if (temperature > temperature_threshold) then
+		if (temperatureF > temperature_threshold) then
 			send_directive("say", {"recieved": "Y"})
 		fired {
 			raise wovyn event "threshold_violation"
