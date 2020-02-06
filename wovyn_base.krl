@@ -48,8 +48,8 @@ ruleset wovyn_base {
 			temperatureF = temperature["temperatureF"].klog("temperatureF").head()
 		}
 
-		if (temperatureF > temperature_threshold) then
-			send_directive("say", {"recieved": "Y"})
+		send_directive("say", {"recieved": "Y"})
+		
 		fired {
 			raise wovyn event "threshold_violation"
 				attributes event:attrs
